@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI就活ダッシュボード</title>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Fraunces:ital,wght@0,300;0,600;0,900;1,300;1,600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -2365,7 +2365,8 @@ document.querySelectorAll('.lang-btn').forEach(btn => {
 // ─────────────────────────────────────────────
 const SUPABASE_URL  = 'https://sveeghlgtgyhxqadlpld.supabase.co';
 const SUPABASE_ANON = 'sb_publishable_VCGhMgYon4EU3rL1LS47iw_SA8QgosW';
-const _supa = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+const { createClient } = window.supabase;
+const _supa = createClient(SUPABASE_URL, SUPABASE_ANON);
 
 let _currentUser = null;
 
