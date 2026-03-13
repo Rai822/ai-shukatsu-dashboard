@@ -780,6 +780,12 @@ body { background:var(--paper); color:var(--ink); font-family:'Noto Sans JP',san
         <button class="lang-btn">ZH</button>
         <button class="lang-btn">EN</button>
       </div>
+      <button onclick="authSignOut()"
+        style="background:none;border:1px solid var(--border);color:var(--muted);padding:5px 12px;font-family:'DM Mono',monospace;font-size:10px;cursor:pointer;border-radius:2px;transition:all 0.15s;letter-spacing:0.06em"
+        onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'"
+        onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">
+        ログアウト
+      </button>
     </div>
   </div>
 
@@ -2508,6 +2514,13 @@ async function syncFromSupabase() {
 async function authSignOut() {
   await syncToSupabase();
   await _supa.auth.signOut();
+  _currentUser = null;
+  document.getElementById('auth-screen').style.display = 'flex';
+  // フォームをリセット
+  document.getElementById('auth-email').value = '';
+  document.getElementById('auth-password').value = '';
+  document.getElementById('auth-error').style.display = 'none';
+  switchAuthTab('login');
   showToast('ログアウトしました');
 }
 
